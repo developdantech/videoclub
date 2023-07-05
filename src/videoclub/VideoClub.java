@@ -38,7 +38,7 @@ public class VideoClub {
             
             switch(option){
                 case 1: 
-                    movieService.createMovie();
+                    movieService.createMovie(); //Test
                     break;
                 case 2:
                     movieService.listMovies();
