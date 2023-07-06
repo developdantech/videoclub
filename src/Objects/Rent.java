@@ -37,12 +37,12 @@ public class Rent {
         long days = ChronoUnit.DAYS.between(this.startDate, this.endDate);
         double price = 0;
         if(days <= this.defaultDays){
-            price = (double) (days * this.dailyPrice);
+            price = this.dailyPrice;
             return price;
         }else{
             for(int i = 1; i <= (days - this.defaultDays); i++){
                 if(i == 1){
-                    price = this.defaultDays * this.dailyPrice;
+                    price = this.dailyPrice;
                 }
                 price += price * 0.1;
             }
@@ -51,17 +51,28 @@ public class Rent {
     }
     
     private LocalDate calculateDate(String dateToConvert){
- 
-        // Definir el formato de fecha deseado
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+         try{
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
-        // Convertir las cadenas de fecha a objetos LocalDate
-        return LocalDate.parse(dateToConvert, formatter);
+            // Convertir las cadenas de fecha a objetos LocalDate
+            LocalDate date = LocalDate.parse(dateToConvert, formatter);
+            return date;
+             
+         }catch (Exception e) {
+            e.printStackTrace();
+                    return null;
+         } 
     }
     public double getPrice(){
         return this.price;
     }
     public long getDays(){
         return ChronoUnit.DAYS.between(this.startDate, this.endDate);
+    }
+    public LocalDate getStartDate(){
+        return this.startDate;
+    }
+    public LocalDate getEndDate(){
+        return this.endDate;
     }
 }

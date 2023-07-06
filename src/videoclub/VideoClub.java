@@ -25,6 +25,8 @@ public class VideoClub {
         Scanner sc = new Scanner(System.in);
         MovieService movieService = new MovieService();
         RentService rentService = new RentService(movieService);
+        //Create Initial Movie
+        movieService.initialMovie();
         int option = 0;
         System.out.println("Welcome to your movie club, please select an option to start");
         
@@ -33,6 +35,9 @@ public class VideoClub {
                     + "2. List movies. \n"
                     + "3. Create a Rent. \n"
                     + "4. List Rented movies \n"
+                    + "5. Find a movie by title \n"
+                    + "6. Find a movie by genre \n"
+                    + "7. Find a rent by date \n"
                     + "9. Finish");
             option = sc.nextInt();
             
@@ -49,6 +54,14 @@ public class VideoClub {
                 case 4:
                     rentService.listRents();
                     break;
+                case 5:
+                    movieService.findByTitle();
+                    break;
+                case 6:
+                    movieService.findByGenre();
+                    break;
+                case 7:
+                    rentService.findByDate();
                 case 9:
                     System.out.println("Good bye!");
                     break;

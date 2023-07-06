@@ -18,7 +18,7 @@ public class MovieService {
     private Scanner sc = new Scanner(System.in).useDelimiter("\n");
     
     private List<Movie> movies = new ArrayList<>();
-    
+  
     public void createMovie(){
         System.out.println("Please enter the title for the new movie: ");
         String title = sc.next();
@@ -61,5 +61,46 @@ public class MovieService {
         }
         return new Movie();
     }
-            
+    public void initialMovie(){
+        this.movies.add(new Movie("Titanic","Drama", 1984,"03:03:03"));
+    }
+    public void findByTitle(){
+        System.out.println("Enter the title:");
+        String titleToFind = sc.next();
+        boolean found = false;
+        int index = 0;
+        for(Movie movie : this.movies){
+            if(movie.getTitle().toLowerCase().contains(titleToFind.toLowerCase())){
+                if(index == 0){
+                    System.out.println("Movie(s) found:");
+                }
+                System.out.println("Title: " + movie.getTitle() + ", " + "Genre: " + movie.getGenre() + ", " + "Year: " + movie.getYear() + ", " + "Duration: " + movie.getDuration());
+                found = true;
+                index++;
+            }
+        }
+        if(!found){
+            System.out.println("Movie not found");
+        }
+    }       
+    public void findByGenre(){
+        System.out.println("Enter the genre:");
+        String genreToFind = sc.next();
+        boolean found = false;
+        int index = 0;
+        for(Movie movie : this.movies){
+            if(movie.getGenre().toLowerCase().contains(genreToFind.toLowerCase())){
+                if(index == 0){
+                    System.out.println("Movie(s) found:");
+                }
+                System.out.println("Title: " + movie.getTitle() + ", " + "Genre: " + movie.getGenre() + ", " + "Year: " + movie.getYear() + ", " + "Duration: " + movie.getDuration());
+                found = true;
+                index++;
+            }
+        }
+        if(!found){
+            System.out.println("Movie not found");
+        }
+    } 
+    
 }
